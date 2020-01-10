@@ -1,15 +1,16 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Verify;
+using VerifyXunit;
+using Xunit.Abstractions;
 
-public class Snippets
+public class Snippets: VerifyBase
 {
     void DisableClipboard()
     {
         #region DisableClipboard
 
-        var settings = new VerifySettings();
-        settings.DisableClipboard();
+        Verify("content", new VerifySettings().DisableClipboard());
 
         #endregion
     }
@@ -18,9 +19,7 @@ public class Snippets
     {
         #region AutoVerify
 
-        var settings = new VerifySettings();
-        settings.AutoVerify();
-
+        Verify("content", new VerifySettings().AutoVerify());
         #endregion
     }
 
@@ -65,5 +64,10 @@ public class Snippets
             _ => { _.DateFormatHandling = DateFormatHandling.MicrosoftDateFormat; });
 
         #endregion
+    }
+
+    public Snippets(ITestOutputHelper output) :
+        base(output)
+    {
     }
 }

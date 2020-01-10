@@ -8,7 +8,7 @@ namespace Verify
         internal SerializationSettings serialization = SharedVerifySettings.serialization;
         bool isCloned;
 
-        public void ModifySerialization(Action<SerializationSettings> action)
+        public VerifySettings ModifySerialization(Action<SerializationSettings> action)
         {
             if (!isCloned)
             {
@@ -18,9 +18,10 @@ namespace Verify
 
             action(serialization);
             serialization.RegenSettings();
+            return this;
         }
 
-        public void AddExtraSettings(Action<JsonSerializerSettings> action)
+        public VerifySettings AddExtraSettings(Action<JsonSerializerSettings> action)
         {
             if (!isCloned)
             {
@@ -30,6 +31,7 @@ namespace Verify
 
             serialization.AddExtraSettings(action);
             serialization.RegenSettings();
+            return this;
         }
     }
 }

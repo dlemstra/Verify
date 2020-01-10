@@ -41,10 +41,11 @@ namespace Verify
 
         internal string? extension;
 
-        public void UseExtension(string extension)
+        public VerifySettings UseExtension(string extension)
         {
             Guard.AgainstBadExtension(extension, nameof(extension));
             this.extension = extension;
+            return this;
         }
 
         internal string ExtensionOrTxt()
@@ -74,9 +75,10 @@ namespace Verify
 
         internal bool autoVerify;
 
-        public void AutoVerify()
+        public VerifySettings AutoVerify()
         {
             autoVerify = true;
+            return this;
         }
     }
 }

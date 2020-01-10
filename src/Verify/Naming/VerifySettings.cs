@@ -4,19 +4,22 @@
     {
         internal Namer Namer = new Namer();
 
-        public void UniqueForAssemblyConfiguration()
+        public VerifySettings UniqueForAssemblyConfiguration()
         {
             Namer.UniqueForAssemblyConfiguration = true;
+            return this;
         }
 
-        public void UniqueForRuntime()
+        public VerifySettings UniqueForRuntime()
         {
             Namer.UniqueForRuntime = true;
+            return this;
         }
 
-        public void UniqueForRuntimeAndVersion()
+        public VerifySettings UniqueForRuntimeAndVersion()
         {
             Namer.UniqueForRuntimeAndVersion = true;
+            return this;
         }
     }
 }

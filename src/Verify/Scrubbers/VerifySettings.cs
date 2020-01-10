@@ -7,36 +7,42 @@ namespace Verify
     {
         internal List<Func<string, string>> instanceScrubbers = new List<Func<string, string>>();
 
-        public void ScrubMachineName()
+        public VerifySettings ScrubMachineName()
         {
             AddScrubber(Scrubbers.ScrubMachineName);
+            return this;
         }
 
-        public void AddScrubber(Func<string, string> scrubber)
+        public VerifySettings AddScrubber(Func<string, string> scrubber)
         {
             Guard.AgainstNull(scrubber, nameof(scrubber));
 
             instanceScrubbers.Insert(0, scrubber);
+            return this;
         }
 
         public void ScrubLinesContaining(StringComparison comparison, params string[] stringToMatch)
         {
             instanceScrubbers.Insert(0, s => s.RemoveLinesContaining(comparison, stringToMatch));
+            return this;
         }
 
-        public void ScrubLines(Func<string, bool> removeLine)
+        public VerifySettings ScrubLines(Func<string, bool> removeLine)
         {
             instanceScrubbers.Insert(0, s => s.FilterLines(removeLine));
+            return this;
         }
 
-        public void ScrubLinesWithReplace(Func<string, string> replaceLine)
+        public VerifySettings ScrubLinesWithReplace(Func<string, string> replaceLine)
         {
             instanceScrubbers.Insert(0, s => s.ReplaceLines(replaceLine));
+            return this;
         }
 
-        public void ScrubLinesContaining(params string[] stringToMatch)
+        public VerifySettings ScrubLinesContaining(params string[] stringToMatch)
         {
             ScrubLinesContaining(StringComparison.OrdinalIgnoreCase, stringToMatch);
+            return this;
         }
     }
 }

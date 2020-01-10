@@ -4,9 +4,10 @@
     {
         internal bool diffEnabled = true;
 
-        public void DisableDiff()
+        public VerifySettings DisableDiff()
         {
             diffEnabled = false;
+            return this;
         }
     }
 }

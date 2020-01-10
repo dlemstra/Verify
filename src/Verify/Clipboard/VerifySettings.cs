@@ -4,9 +4,10 @@
     {
         internal bool clipboardEnabled = true;
 
-        public void DisableClipboard()
+        public VerifySettings DisableClipboard()
         {
             clipboardEnabled = false;
+            return this;
         }
     }
 }
